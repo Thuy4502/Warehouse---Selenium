@@ -414,3 +414,92 @@ java.net.SocketException: Connection reset
 [INFO] 08-12-2024 16:06:48 [main] Utils - [TestNG] Running:
   C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
 
+[INFO] 09-12-2024 13:32:09 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 13:35:04 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 13:36:08 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 13:39:46 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 13:48:54 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 13:53:31 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 14:07:46 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 14:08:25 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 14:09:43 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 14:35:09 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 14:38:58 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 15:04:27 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 15:08:43 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 15:10:42 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 15:11:42 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 15:12:16 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 15:23:44 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 15:55:09 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 15:55:09 [main] Log - Start testing WarehouseAutomationTest
+[INFO] 09-12-2024 16:10:10 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 16:10:10 [main] Log - Start testing WarehouseAutomationTest
+[INFO] 09-12-2024 16:12:43 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 16:12:46 [main] Log - Start testing WarehouseAutomationTest
+[INFO] 09-12-2024 16:13:09 [main] Log - checkBeginningAmount test is starting...
+[INFO] 09-12-2024 16:13:13 [main] Log - checkBeginningAmount test is passed.
+[INFO] 09-12-2024 16:13:17 [main] Log - End testing WarehouseAutomationTest
+[INFO] 09-12-2024 16:15:07 [main] Utils - [TestNG] Running:
+  C:\Users\thith\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+[INFO] 09-12-2024 16:15:10 [main] Log - Start testing WarehouseAutomationTest
+[INFO] 09-12-2024 16:15:31 [main] Log - checkBeginningAmount test is starting...
+[INFO] 09-12-2024 16:15:33 [main] Log - checkBeginningAmount test is passed.
+[INFO] 09-12-2024 16:15:57 [main] Log - checkImportingAmount test is starting...
+[INFO] 09-12-2024 16:15:59 [main] Log - checkImportingAmount test is passed.
+[INFO] 09-12-2024 16:16:22 [main] Log - checkEndAmount test is starting...
+[INFO] 09-12-2024 16:16:24 [main] Log - checkEndAmount test is passed.
+[INFO] 09-12-2024 16:16:48 [main] Log - checkEndQuantity test is starting...
+[INFO] 09-12-2024 16:16:50 [main] Log - checkEndQuantity test is passed.
+[INFO] 09-12-2024 16:17:14 [main] Log - checkInventoryBookConsistency test is starting...
+[ERROR] 09-12-2024 16:17:15 [main] Log - checkInventoryBookConsistency test is failed.
+[INFO] 09-12-2024 16:17:41 [main] Log - testStartCalendar test is starting...
+[INFO] 09-12-2024 16:17:42 [main] Log - testStartCalendar test is passed.
+[INFO] 09-12-2024 16:18:05 [main] Log - testEndCalendar test is starting...
+[INFO] 09-12-2024 16:18:05 [main] Log - testEndCalendar test is passed.
+[INFO] 09-12-2024 16:18:29 [main] Log - testFilterByDate test is starting...
+[INFO] 09-12-2024 16:18:30 [main] Log - testFilterByDate test is passed.
+[INFO] 09-12-2024 16:18:54 [main] Log - checkDownloadedExcelFile test is starting...
+[INFO] 09-12-2024 16:18:57 [main] Log - checkDownloadedExcelFile test is passed.
+[INFO] 09-12-2024 16:19:01 [main] Log - End testing WarehouseAutomationTest

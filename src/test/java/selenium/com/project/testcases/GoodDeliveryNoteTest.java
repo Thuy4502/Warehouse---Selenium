@@ -8,13 +8,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import selenium.com.browsers.base.BaseSetUp;
+import selenium.com.browsers.base.BaseSetup;
 import selenium.com.project.pages.GoodDeliveryNotePage;
 import selenium.com.project.pages.LoginPage;
 
 import java.time.Duration;
 
-public class GoodDeliveryNoteTest extends BaseSetUp {
+public class GoodDeliveryNoteTest extends BaseSetup {
     private GoodDeliveryNotePage goodDeliveryNotePage;
     private LoginPage loginPage;
     ExcelHelpers excel = new ExcelHelpers();
@@ -54,7 +54,7 @@ public class GoodDeliveryNoteTest extends BaseSetUp {
 
     @Test(priority = 2)
     public void checkCancelCreateTransaction() {
-       goodDeliveryNotePage.checkCancelCreateTransaction();
+        goodDeliveryNotePage.checkCancelCreateTransaction();
     }
 
 //    @Test(priority = 3)

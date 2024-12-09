@@ -11,8 +11,8 @@ public class ExtentManager {
         ExtentSparkReporter reporter = new ExtentSparkReporter("./ExtentReports/ExtentReport.html");
         reporter.config().setReportName("Demo Extent Report");
         extentReports.attachReporter(reporter);
-        extentReports.setSystemInfo("Framework Name", "Selenium Java Framework | Anh Tester");
-        extentReports.setSystemInfo("Author", "Anh Tester");
+        extentReports.setSystemInfo("Warehouse Testing Report", "Selenium Java Framework | Trần Thị Thúy");
+        extentReports.setSystemInfo("Author", "Trần Thị Thúy");
         return extentReports;
     }
 }

@@ -7,7 +7,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import selenium.com.browsers.base.BaseSetUp;
+import selenium.com.browsers.base.BaseSetup;
 import selenium.com.project.pages.LogPage;
 import selenium.com.project.pages.LoginPage;
 
@@ -19,7 +19,7 @@ import java.util.List;
 
 import static helpers.ExcelHelpers.getDownloadedFileName;
 
-public class LogTest extends BaseSetUp {
+public class LogTest extends BaseSetup {
     private LogPage logPage;
     private LoginPage loginPage;
 

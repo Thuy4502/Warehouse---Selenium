@@ -5,10 +5,12 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import selenium.com.browsers.base.BaseSetUp;
+import selenium.com.browsers.base.BaseSetup;
 import selenium.com.project.pages.ExportLogPage;
 import selenium.com.project.pages.LoginPage;
+import selenium.com.utils.listeners.ReportListener;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -18,7 +20,8 @@ import java.util.List;
 
 import static helpers.ExcelHelpers.getDownloadedFileName;
 
-public class ExportLogTest extends BaseSetUp {
+@Listeners(ReportListener.class)
+public class ExportLogTest extends BaseSetup {
     private ExportLogPage exportLogPage;
     private LoginPage loginPage;
 
