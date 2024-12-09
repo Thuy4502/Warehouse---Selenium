@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="WarehouseAutomationTest(failed)">
+    <classes>
+      <class name="selenium.com.testcases.GoodDeliveryNoteTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="tearDown"/>
+          <include name="createBrowser"/>
+          <include name="closeBrowser"/>
+          <include name="createTransactionSuccessfullyTest" invocation-numbers="0"/>
+          <include name="takeScreenshot"/>
+          <include name="testEmptyTransactionCodeError"/>
+        </methods>
+      </class> <!-- selenium.com.testcases.GoodDeliveryNoteTest -->
+    </classes>
+  </test> <!-- WarehouseAutomationTest(failed) -->
+</suite> <!-- Failed suite [Default Suite] -->

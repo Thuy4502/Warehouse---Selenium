@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="18" passed="16" failed="2" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-12-08T16:06:48 ICT" name="Default Suite" finished-at="2024-12-08T16:15:06 ICT" duration-ms="497461">
+    <groups>
+    </groups>
+    <test started-at="2024-12-08T16:06:48 ICT" name="WarehouseAutomationTest" finished-at="2024-12-08T16:15:06 ICT" duration-ms="497461">
+      <class name="selenium.com.testcases.GoodDeliveryNoteTest">
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:06:48 ICT" name="createBrowser" finished-at="2024-12-08T16:06:50 ICT" duration-ms="2221" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:06:50 ICT" name="setUp" finished-at="2024-12-08T16:07:11 ICT" duration-ms="20243" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="createTransactionSuccessfullyTest(java.lang.String,java.lang.String,int,java.lang.String,java.lang.String)[pri:1, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:07:11 ICT" name="createTransactionSuccessfullyTest" data-provider="transactionData" finished-at="2024-12-08T16:07:11 ICT" duration-ms="601" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Lê Thanh Tú]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[97 Man Thiện]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[4]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[20]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[40]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[Cannot locate option with index: 4
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.24.0', revision: '748ffc9bc3'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '18.0.2.1'
+Driver info: driver.version: unknown]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: Cannot locate option with index: 4
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.24.0', revision: '748ffc9bc3'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '18.0.2.1'
+Driver info: driver.version: unknown
+at org.openqa.selenium.support.ui.Select.setSelectedByIndex(Select.java:303)
+at org.openqa.selenium.support.ui.Select.selectByIndex(Select.java:179)
+at selenium.com.pages.GoodDeliveryNotePage.fillTransactionForm(GoodDeliveryNotePage.java:150)
+at selenium.com.testcases.GoodDeliveryNoteTest.createTransactionSuccessfullyTest(GoodDeliveryNoteTest.java:52)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:739)
+at org.testng.TestRunner.run(TestRunner.java:614)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createTransactionSuccessfullyTest -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:07:11 ICT" name="takeScreenshot" finished-at="2024-12-08T16:07:12 ICT" duration-ms="1186" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createTransactionSuccessfullyTest status=FAILURE method=GoodDeliveryNoteTest.createTransactionSuccessfullyTest(java.lang.String,java.lang.String,int,java.lang.String,java.lang.String)[pri:1, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:07:12 ICT" name="tearDown" finished-at="2024-12-08T16:07:15 ICT" duration-ms="3014" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:07:15 ICT" name="closeBrowser" finished-at="2024-12-08T16:07:16 ICT" duration-ms="333" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:07:16 ICT" name="createBrowser" finished-at="2024-12-08T16:07:18 ICT" duration-ms="1813" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:07:18 ICT" name="setUp" finished-at="2024-12-08T16:07:36 ICT" duration-ms="17996" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="checkCancelCreateTransaction()[pri:2, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:07:36 ICT" name="checkCancelCreateTransaction" finished-at="2024-12-08T16:07:46 ICT" duration-ms="10777" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkCancelCreateTransaction -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:07:46 ICT" name="takeScreenshot" finished-at="2024-12-08T16:07:47 ICT" duration-ms="1027" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=checkCancelCreateTransaction status=SUCCESS method=GoodDeliveryNoteTest.checkCancelCreateTransaction()[pri:2, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:07:47 ICT" name="tearDown" finished-at="2024-12-08T16:07:50 ICT" duration-ms="3003" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:07:50 ICT" name="closeBrowser" finished-at="2024-12-08T16:07:51 ICT" duration-ms="302" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:07:51 ICT" name="createBrowser" finished-at="2024-12-08T16:07:52 ICT" duration-ms="1425" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:07:52 ICT" name="setUp" finished-at="2024-12-08T16:08:10 ICT" duration-ms="17964" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testEmptyAddressErrorMessage()[pri:3, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:08:10 ICT" name="testEmptyAddressErrorMessage" finished-at="2024-12-08T16:08:11 ICT" duration-ms="582" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testEmptyAddressErrorMessage -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:08:11 ICT" name="takeScreenshot" finished-at="2024-12-08T16:08:12 ICT" duration-ms="1012" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testEmptyAddressErrorMessage status=SUCCESS method=GoodDeliveryNoteTest.testEmptyAddressErrorMessage()[pri:3, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:08:12 ICT" name="tearDown" finished-at="2024-12-08T16:08:15 ICT" duration-ms="3004" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:08:15 ICT" name="closeBrowser" finished-at="2024-12-08T16:08:15 ICT" duration-ms="315" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:08:15 ICT" name="createBrowser" finished-at="2024-12-08T16:08:16 ICT" duration-ms="1403" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:08:16 ICT" name="setUp" finished-at="2024-12-08T16:08:34 ICT" duration-ms="17912" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testValidAddress()[pri:4, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:08:34 ICT" name="testValidAddress" finished-at="2024-12-08T16:08:35 ICT" duration-ms="902" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testValidAddress -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:08:35 ICT" name="takeScreenshot" finished-at="2024-12-08T16:08:36 ICT" duration-ms="1008" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testValidAddress status=SUCCESS method=GoodDeliveryNoteTest.testValidAddress()[pri:4, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:08:36 ICT" name="tearDown" finished-at="2024-12-08T16:08:39 ICT" duration-ms="3009" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:08:39 ICT" name="closeBrowser" finished-at="2024-12-08T16:08:40 ICT" duration-ms="284" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:08:40 ICT" name="createBrowser" finished-at="2024-12-08T16:08:41 ICT" duration-ms="1411" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:08:41 ICT" name="setUp" finished-at="2024-12-08T16:08:59 ICT" duration-ms="17871" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testTransactionRequestDisplay()[pri:5, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:08:59 ICT" name="testTransactionRequestDisplay" finished-at="2024-12-08T16:08:59 ICT" duration-ms="425" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testTransactionRequestDisplay -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:08:59 ICT" name="takeScreenshot" finished-at="2024-12-08T16:09:00 ICT" duration-ms="1009" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testTransactionRequestDisplay status=SUCCESS method=GoodDeliveryNoteTest.testTransactionRequestDisplay()[pri:5, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:09:00 ICT" name="tearDown" finished-at="2024-12-08T16:09:03 ICT" duration-ms="3014" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:09:03 ICT" name="closeBrowser" finished-at="2024-12-08T16:09:04 ICT" duration-ms="269" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:09:04 ICT" name="createBrowser" finished-at="2024-12-08T16:09:05 ICT" duration-ms="1405" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:09:05 ICT" name="setUp" finished-at="2024-12-08T16:09:23 ICT" duration-ms="18045" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testTransactionRequestList()[pri:6, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:09:23 ICT" name="testTransactionRequestList" finished-at="2024-12-08T16:09:23 ICT" duration-ms="114" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testTransactionRequestList -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:09:23 ICT" name="takeScreenshot" finished-at="2024-12-08T16:09:24 ICT" duration-ms="1011" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testTransactionRequestList status=SUCCESS method=GoodDeliveryNoteTest.testTransactionRequestList()[pri:6, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:09:24 ICT" name="tearDown" finished-at="2024-12-08T16:09:27 ICT" duration-ms="3017" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:09:27 ICT" name="closeBrowser" finished-at="2024-12-08T16:09:27 ICT" duration-ms="284" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:09:27 ICT" name="createBrowser" finished-at="2024-12-08T16:09:29 ICT" duration-ms="1360" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:09:29 ICT" name="setUp" finished-at="2024-12-08T16:09:47 ICT" duration-ms="17855" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testEmptyTransactionCodeError()[pri:7, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:09:47 ICT" name="testEmptyTransactionCodeError" finished-at="2024-12-08T16:10:08 ICT" duration-ms="21192" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: //p[@id='error-transaction-request']' (tried for 3 second(s) with 500 milliseconds interval)]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: //p[@id='error-transaction-request']' (tried for 3 second(s) with 500 milliseconds interval)
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at selenium.com.pages.GoodDeliveryNotePage.waitForTransactionRequestError(GoodDeliveryNotePage.java:277)
+at selenium.com.testcases.GoodDeliveryNoteTest.testEmptyTransactionCodeError(GoodDeliveryNoteTest.java:128)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:739)
+at org.testng.TestRunner.run(TestRunner.java:614)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//p[@id='error-transaction-request']"}
+  (Session info: chrome=131.0.6778.109)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.24.0', revision: '748ffc9bc3'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '18.0.2.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [6d1d6ad241b009e6f608cb8226f10fe3, findElement {using=xpath, value=//p[@id='error-transaction-request']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 131.0.6778.109, chrome: {chromedriverVersion: 131.0.6778.87 (ce31cae94873..., userDataDir: C:\Users\thith\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56853}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56853/devtoo..., se:cdpVersion: 131.0.6778.109, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 6d1d6ad241b009e6f608cb8226f10fe3
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+at jdk.proxy2/jdk.proxy2.$Proxy30.isDisplayed(Unknown Source)
+at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:304)
+at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:290)
+at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:287)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+... 27 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testEmptyTransactionCodeError -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:10:08 ICT" name="takeScreenshot" finished-at="2024-12-08T16:10:09 ICT" duration-ms="1142" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testEmptyTransactionCodeError status=FAILURE method=GoodDeliveryNoteTest.testEmptyTransactionCodeError()[pri:7, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:10:09 ICT" name="tearDown" finished-at="2024-12-08T16:10:12 ICT" duration-ms="3020" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:10:12 ICT" name="closeBrowser" finished-at="2024-12-08T16:10:12 ICT" duration-ms="300" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:10:12 ICT" name="createBrowser" finished-at="2024-12-08T16:10:14 ICT" duration-ms="1637" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:10:14 ICT" name="setUp" finished-at="2024-12-08T16:10:32 ICT" duration-ms="17927" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testChangeTransactionRequest()[pri:8, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:10:32 ICT" name="testChangeTransactionRequest" finished-at="2024-12-08T16:10:32 ICT" duration-ms="607" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testChangeTransactionRequest -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:10:32 ICT" name="takeScreenshot" finished-at="2024-12-08T16:10:33 ICT" duration-ms="1006" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testChangeTransactionRequest status=SUCCESS method=GoodDeliveryNoteTest.testChangeTransactionRequest()[pri:8, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:10:33 ICT" name="tearDown" finished-at="2024-12-08T16:10:36 ICT" duration-ms="3010" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:10:36 ICT" name="closeBrowser" finished-at="2024-12-08T16:10:37 ICT" duration-ms="327" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:10:37 ICT" name="createBrowser" finished-at="2024-12-08T16:10:38 ICT" duration-ms="1472" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:10:38 ICT" name="setUp" finished-at="2024-12-08T16:10:56 ICT" duration-ms="17710" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testTransactionRequestDefault()[pri:9, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:10:56 ICT" name="testTransactionRequestDefault" finished-at="2024-12-08T16:10:56 ICT" duration-ms="147" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testTransactionRequestDefault -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:10:56 ICT" name="takeScreenshot" finished-at="2024-12-08T16:10:57 ICT" duration-ms="1009" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testTransactionRequestDefault status=SUCCESS method=GoodDeliveryNoteTest.testTransactionRequestDefault()[pri:9, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:10:57 ICT" name="tearDown" finished-at="2024-12-08T16:11:00 ICT" duration-ms="3016" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:11:00 ICT" name="closeBrowser" finished-at="2024-12-08T16:11:00 ICT" duration-ms="270" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:11:00 ICT" name="createBrowser" finished-at="2024-12-08T16:11:02 ICT" duration-ms="1424" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:11:02 ICT" name="setUp" finished-at="2024-12-08T16:11:20 ICT" duration-ms="17802" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testActualQuantityWithNegativeNumber()[pri:10, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:11:20 ICT" name="testActualQuantityWithNegativeNumber" finished-at="2024-12-08T16:11:20 ICT" duration-ms="187" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testActualQuantityWithNegativeNumber -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:11:20 ICT" name="takeScreenshot" finished-at="2024-12-08T16:11:21 ICT" duration-ms="1013" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testActualQuantityWithNegativeNumber status=SUCCESS method=GoodDeliveryNoteTest.testActualQuantityWithNegativeNumber()[pri:10, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:11:21 ICT" name="tearDown" finished-at="2024-12-08T16:11:24 ICT" duration-ms="3009" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:11:24 ICT" name="closeBrowser" finished-at="2024-12-08T16:11:24 ICT" duration-ms="296" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:11:24 ICT" name="createBrowser" finished-at="2024-12-08T16:11:26 ICT" duration-ms="1378" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:11:26 ICT" name="setUp" finished-at="2024-12-08T16:11:43 ICT" duration-ms="17924" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testCheckActualQuantityIsOnlyNumericInput()[pri:11, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:11:43 ICT" name="testCheckActualQuantityIsOnlyNumericInput" finished-at="2024-12-08T16:11:44 ICT" duration-ms="212" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCheckActualQuantityIsOnlyNumericInput -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:11:44 ICT" name="takeScreenshot" finished-at="2024-12-08T16:11:45 ICT" duration-ms="1010" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testCheckActualQuantityIsOnlyNumericInput status=SUCCESS method=GoodDeliveryNoteTest.testCheckActualQuantityIsOnlyNumericInput()[pri:11, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:11:45 ICT" name="tearDown" finished-at="2024-12-08T16:11:48 ICT" duration-ms="3009" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:11:48 ICT" name="closeBrowser" finished-at="2024-12-08T16:11:48 ICT" duration-ms="375" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:11:48 ICT" name="createBrowser" finished-at="2024-12-08T16:11:49 ICT" duration-ms="1398" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:11:49 ICT" name="setUp" finished-at="2024-12-08T16:12:07 ICT" duration-ms="17714" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testCheckValidActualQuantity()[pri:12, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:12:07 ICT" name="testCheckValidActualQuantity" finished-at="2024-12-08T16:12:08 ICT" duration-ms="542" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCheckValidActualQuantity -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:12:08 ICT" name="takeScreenshot" finished-at="2024-12-08T16:12:09 ICT" duration-ms="1013" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testCheckValidActualQuantity status=SUCCESS method=GoodDeliveryNoteTest.testCheckValidActualQuantity()[pri:12, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:12:09 ICT" name="tearDown" finished-at="2024-12-08T16:12:12 ICT" duration-ms="3014" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:12:12 ICT" name="closeBrowser" finished-at="2024-12-08T16:12:12 ICT" duration-ms="331" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:12:12 ICT" name="createBrowser" finished-at="2024-12-08T16:12:14 ICT" duration-ms="1462" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:12:14 ICT" name="setUp" finished-at="2024-12-08T16:12:31 ICT" duration-ms="17778" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testCheckActualQuantityWithFloat()[pri:13, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:12:31 ICT" name="testCheckActualQuantityWithFloat" finished-at="2024-12-08T16:12:34 ICT" duration-ms="2262" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCheckActualQuantityWithFloat -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:12:34 ICT" name="takeScreenshot" finished-at="2024-12-08T16:12:35 ICT" duration-ms="1017" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testCheckActualQuantityWithFloat status=SUCCESS method=GoodDeliveryNoteTest.testCheckActualQuantityWithFloat()[pri:13, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:12:35 ICT" name="tearDown" finished-at="2024-12-08T16:12:38 ICT" duration-ms="3008" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:12:38 ICT" name="closeBrowser" finished-at="2024-12-08T16:12:38 ICT" duration-ms="283" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:12:38 ICT" name="createBrowser" finished-at="2024-12-08T16:12:39 ICT" duration-ms="1432" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:12:39 ICT" name="setUp" finished-at="2024-12-08T16:12:57 ICT" duration-ms="17650" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testCheckActualQuantityLimit()[pri:14, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:12:57 ICT" name="testCheckActualQuantityLimit" finished-at="2024-12-08T16:12:58 ICT" duration-ms="529" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCheckActualQuantityLimit -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:12:58 ICT" name="takeScreenshot" finished-at="2024-12-08T16:12:59 ICT" duration-ms="1011" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testCheckActualQuantityLimit status=SUCCESS method=GoodDeliveryNoteTest.testCheckActualQuantityLimit()[pri:14, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:12:59 ICT" name="tearDown" finished-at="2024-12-08T16:13:02 ICT" duration-ms="3002" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:13:02 ICT" name="closeBrowser" finished-at="2024-12-08T16:13:02 ICT" duration-ms="741" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:13:02 ICT" name="createBrowser" finished-at="2024-12-08T16:13:04 ICT" duration-ms="1336" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:13:04 ICT" name="setUp" finished-at="2024-12-08T16:13:21 ICT" duration-ms="17667" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testAddRow()[pri:15, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:13:21 ICT" name="testAddRow" finished-at="2024-12-08T16:13:22 ICT" duration-ms="241" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAddRow -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:13:22 ICT" name="takeScreenshot" finished-at="2024-12-08T16:13:23 ICT" duration-ms="1013" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testAddRow status=SUCCESS method=GoodDeliveryNoteTest.testAddRow()[pri:15, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:13:23 ICT" name="tearDown" finished-at="2024-12-08T16:13:26 ICT" duration-ms="3004" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:13:26 ICT" name="closeBrowser" finished-at="2024-12-08T16:13:26 ICT" duration-ms="348" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:13:26 ICT" name="createBrowser" finished-at="2024-12-08T16:13:27 ICT" duration-ms="1386" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:13:27 ICT" name="setUp" finished-at="2024-12-08T16:13:45 ICT" duration-ms="17640" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testDeleteRow()[pri:16, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:13:45 ICT" name="testDeleteRow" finished-at="2024-12-08T16:13:56 ICT" duration-ms="10689" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDeleteRow -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:13:56 ICT" name="takeScreenshot" finished-at="2024-12-08T16:13:57 ICT" duration-ms="1015" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testDeleteRow status=SUCCESS method=GoodDeliveryNoteTest.testDeleteRow()[pri:16, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:13:57 ICT" name="tearDown" finished-at="2024-12-08T16:14:00 ICT" duration-ms="3014" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:14:00 ICT" name="closeBrowser" finished-at="2024-12-08T16:14:00 ICT" duration-ms="260" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:14:00 ICT" name="createBrowser" finished-at="2024-12-08T16:14:01 ICT" duration-ms="1481" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:14:01 ICT" name="setUp" finished-at="2024-12-08T16:14:19 ICT" duration-ms="17817" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testCancelDeleteRow()[pri:17, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:14:19 ICT" name="testCancelDeleteRow" finished-at="2024-12-08T16:14:30 ICT" duration-ms="10664" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCancelDeleteRow -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:14:30 ICT" name="takeScreenshot" finished-at="2024-12-08T16:14:31 ICT" duration-ms="1012" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testCancelDeleteRow status=SUCCESS method=GoodDeliveryNoteTest.testCancelDeleteRow()[pri:17, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:14:31 ICT" name="tearDown" finished-at="2024-12-08T16:14:34 ICT" duration-ms="3018" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:14:34 ICT" name="closeBrowser" finished-at="2024-12-08T16:14:34 ICT" duration-ms="301" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="createBrowser(java.lang.String)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:14:34 ICT" name="createBrowser" finished-at="2024-12-08T16:14:36 ICT" duration-ms="1433" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBrowser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:14:36 ICT" name="setUp" finished-at="2024-12-08T16:14:53 ICT" duration-ms="17578" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testNoteField()[pri:18, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:14:53 ICT" name="testNoteField" finished-at="2024-12-08T16:15:01 ICT" duration-ms="8038" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testNoteField -->
+        <test-method is-config="true" signature="takeScreenshot(org.testng.ITestResult)[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:15:01 ICT" name="takeScreenshot" finished-at="2024-12-08T16:15:02 ICT" duration-ms="1009" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testNoteField status=SUCCESS method=GoodDeliveryNoteTest.testNoteField()[pri:18, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenshot -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:15:02 ICT" name="tearDown" finished-at="2024-12-08T16:15:05 ICT" duration-ms="3016" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:selenium.com.testcases.GoodDeliveryNoteTest@71812481]" started-at="2024-12-08T16:15:05 ICT" name="closeBrowser" finished-at="2024-12-08T16:15:06 ICT" duration-ms="304" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- selenium.com.testcases.GoodDeliveryNoteTest -->
+    </test> <!-- WarehouseAutomationTest -->
+  </suite> <!-- Default Suite -->
+</testng-results>

@@ -8,6 +8,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -143,5 +144,33 @@ public class ExcelHelpers {
     //Gọi ra hàm này nè
     public String getCellData(String columnName, int rowIndex) {
         return getCellData(columns.get(columnName), rowIndex);
+    }
+
+    public static String getDownloadedFileName(String expectedFileName) {
+        String userHome = System.getProperty("user.home");
+        if (userHome == null) {
+            throw new IllegalStateException("Không thể lấy được thư mục người dùng (user.home).");
+        }
+
+        String downloadsPath = Paths.get(userHome, "Downloads").toString();
+
+        File downloadDir = new File(downloadsPath);
+        if (!downloadDir.exists() || !downloadDir.isDirectory()) {
+            throw new IllegalStateException("Thư mục Downloads không tồn tại: " + downloadsPath);
+        }
+
+        File[] files = downloadDir.listFiles((dir, name) -> name.endsWith(".xls") || name.endsWith(".xlsx"));
+        if (files == null) {
+            throw new IllegalStateException("Không thể truy cập thư mục Downloads hoặc không có tệp nào.");
+        }
+
+        for (File file : files) {
+            if (file.getName().replace(" ", "").equals(expectedFileName + ".xls") ||
+                    file.getName().replace(" ", "").equals(expectedFileName + ".xlsx")) {
+                return file.getAbsolutePath();
+            }
+        }
+
+        return null;
     }
 }
