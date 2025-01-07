@@ -31,11 +31,11 @@ public class ExtentTestManager {
         return driver;
     }
 
-    public static void addScreenShot(String message) {
-        String base64Image = "data:image/png;base64,"
-                + ((TakesScreenshot) BaseSetup.getDriver()).getScreenshotAs(OutputType.BASE64);
-        getTest().log(Status.INFO, message,        MediaEntityBuilder.createScreenCaptureFromBase64String(base64Image).build());
-    }
+//    public static void addScreenShot(String message) {
+//        String base64Image = "data:image/png;base64,"
+//                + ((TakesScreenshot) BaseSetup.getDriver()).getScreenshotAs(OutputType.BASE64);
+//        getTest().log(Status.INFO, message,        MediaEntityBuilder.createScreenCaptureFromBase64String(base64Image).build());
+//    }
 
     public static void addScreenShot(Status status, String message) {
 

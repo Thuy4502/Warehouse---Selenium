@@ -1,37 +1,59 @@
 package selenium.com.project.testcases;
 
 import helpers.CaptureHelpers;
+import helpers.ExcelHelpers;
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import selenium.com.browsers.base.BaseSetup;
+import selenium.com.project.pages.DashboardPage;
 import selenium.com.project.pages.GoodReceivedNotePage;
 import selenium.com.project.pages.LoginPage;
+import selenium.com.utils.listeners.ReportListener;
 
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
+@Listeners(ReportListener.class)
 public class GoodReceivedNoteTest extends BaseSetup {
     private GoodReceivedNotePage goodReceivedNotePage;
-    private LoginPage loginPage;
+    private DashboardPage dashboardPage;
+    ExcelHelpers excelHelpers;
 
-    @BeforeMethod
+    @BeforeClass
     public void setUp() throws InterruptedException {
+        if (driver == null) {
+            throw new IllegalStateException("WebDriver is not initialized.");
+        }
+
+        excelHelpers = new ExcelHelpers();
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        loginPage = new LoginPage(driver);
-        goodReceivedNotePage = new GoodReceivedNotePage(driver);
-        loginPage.loginWarehouse("thukho", "123456");
-        goodReceivedNotePage.goToTransactionPage();
+
+        dashboardPage = new DashboardPage(driver);
+        goodReceivedNotePage = dashboardPage.goToGoodsReceivedNotePage();
+    }
+
+
+    @BeforeMethod
+    public void setUpForMethod() {
+        driver.navigate().refresh();
+        goodReceivedNotePage.openModal();
     }
 
     @AfterMethod
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(3000);
+    public void tearDownMethod() {
+        goodReceivedNotePage.clickCloseModal();
+    }
+
+
+    @AfterClass
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
     @DataProvider(name = "transactionData")
@@ -50,25 +72,9 @@ public class GoodReceivedNoteTest extends BaseSetup {
         Assert.assertEquals(actualMessage, "Tạo phiếu nhập thành công!", "Transaction creation message mismatch!");
     }
 
-    @Test(priority = 2)
-    public void checkCancelCreateTransaction() {
-        goodReceivedNotePage.checkCancelCreateTransaction();
-    }
-
-//    @Test(priority = 3)
-//    public void testTransactionCodeEmpty() {
-//        goodReceivedNotePage.clickSaveButton();
-//        String result = goodReceivedNotePage.getTransactionCodeHelperText();
-//        Assert.assertEquals(result, "Không được bỏ trống số phiếu nhập");
-//    }
-//
-//    @Test(priority = 4)
-//    public void testValidTransactionCode() {
-//        String code = "PN1234";
-//        goodReceivedNotePage.enterTransactionCode(code);
-//        String result = goodReceivedNotePage.getTransactionCode();
-//        String sanitizedText = code.replaceAll("[^a-zA-Z0-9]", "");
-//        Assert.assertEquals(result, sanitizedText);
+//    @Test(priority = 2)
+//    public void checkCancelCreateTransaction() {
+//        goodReceivedNotePage.checkCancelCreateTransaction();
 //    }
 
     @Test(priority = 4)
@@ -79,6 +85,14 @@ public class GoodReceivedNoteTest extends BaseSetup {
     }
 
     @Test(priority = 5)
+    public void testSupplierDefault() {
+        String expectedResult = "Chọn nhà cung cấp";
+        String actualResult = goodReceivedNotePage.getSupplierDefault();
+        Assert.assertEquals(actualResult, expectedResult);
+    }
+
+
+    @Test(priority = 6)
     public void testDisplaySupplier() {
         String supplier = "Công Ty Cổ Phần Phát Hành Sách Tp.HCM";
         goodReceivedNotePage.selectSupplier(supplier);
@@ -86,17 +100,30 @@ public class GoodReceivedNoteTest extends BaseSetup {
         Assert.assertEquals(result, supplier);
     }
 
+    @Test(priority = 7)
+    public void voidTestChangeSupplier() {
+        //Khởi báo giá trị cho nhà cung cấp ban đầu và mong đợi
+        String firstOption = "Công Ty Cổ Phần Phát Hành Sách Tp.HCM";
+        String expectedResult = "Công Ty Cổ Phần Sách & Thiết Bị Giao Dục Trí Tuệ";
+        //Chọn nhà cung cấp ban đầu
+        goodReceivedNotePage.selectSupplier(firstOption);
+        //Thay đổi nhà cung cấp
+        goodReceivedNotePage.selectSupplier(expectedResult);
+        //Lấy nội dung nhà cung cấp thực tế được hiển thị
+        String actualResult = goodReceivedNotePage.getSelectedSupplier();
+        //So sánh kết quả thực tế và kết quả mong đợi có giống nhau hay không (So sánh từng ký tự của 2 chuỗi)
+        //Nếu 2 kết quả giống test case sẽ pass còn ngược lại testcase fail
+        Assert.assertEquals(actualResult, expectedResult);
+    }
 
-    @Test(priority = 6)
+    @Test(priority = 8)
     public void testDeliveryPersonEmpty() {
-//        String name = "Trần Thị Thúy";
-//        goodReceivedNotePage.enterTransactionCode("PN123");
         goodReceivedNotePage.clickSaveButton();
         String result = goodReceivedNotePage.getDeliveryPersonHelperText();
         Assert.assertEquals(result, "Không được bỏ trống họ và tên người giao hàng");
     }
 
-    @Test(priority = 7)
+    @Test(priority = 9)
     public void testValidDeliveryPerson() {
         String name = "Trần Thị Thúy";
         goodReceivedNotePage.enterDeliveryPerson(name);
@@ -107,9 +134,8 @@ public class GoodReceivedNoteTest extends BaseSetup {
     }
 
 
-    @Test(priority = 8)
+    @Test(priority = 10)
     public void testEmptySupplierErrorMessage() {
-//        goodReceivedNotePage.enterTransactionCode("PN099");
         goodReceivedNotePage.enterDeliveryPerson("Trần Thị Thúy");
         goodReceivedNotePage.clickSaveButton();
         String actualErrorMessage = goodReceivedNotePage.getSupplierErrorMessage();
@@ -117,9 +143,8 @@ public class GoodReceivedNoteTest extends BaseSetup {
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
     }
 
-    @Test(priority = 9)
+    @Test(priority = 11)
     public void testEmptyBillCode() {
-//        goodReceivedNotePage.enterTransactionCode("PN099");
         goodReceivedNotePage.enterDeliveryPerson("Trần Thị Thúy");
         goodReceivedNotePage.selectSupplierByIndex(1);
         goodReceivedNotePage.clickSaveButton();
@@ -128,10 +153,9 @@ public class GoodReceivedNoteTest extends BaseSetup {
         Assert.assertEquals(actualHelperText, expectedHelperText);
     }
 
-    @Test(priority = 10)
+    @Test(priority = 12)
     public void testValidBillCode() {
         String data = "HD0003";
-//        goodReceivedNotePage.enterTransactionCode("PN099");
         goodReceivedNotePage.enterDeliveryPerson("Trần Thị Thúy");
         goodReceivedNotePage.selectSupplierByIndex(1);
         goodReceivedNotePage.setBillCode(data);
@@ -140,9 +164,8 @@ public class GoodReceivedNoteTest extends BaseSetup {
         Assert.assertEquals(actualBillCode, sanitizedText);
     }
 
-    @Test(priority = 11)
+    @Test(priority = 13)
     public void testEmptyAddressErrorMessage() {
-//        goodReceivedNotePage.enterTransactionCode("PN099");
         goodReceivedNotePage.enterDeliveryPerson("Trần Thị Thúy");
         goodReceivedNotePage.selectSupplierByIndex(1);
         goodReceivedNotePage.setBillCode("HD0003");
@@ -164,6 +187,23 @@ public class GoodReceivedNoteTest extends BaseSetup {
         Assert.assertEquals(result, sanitizedText);
     }
 
+
+    @Test(priority = 13)
+    public void testTransactionRequestList() {
+        int expectedLen = 2;
+        int actualLen = goodReceivedNotePage.getLenTransactionRequest();
+        Assert.assertEquals(actualLen, expectedLen);
+
+    }
+
+    @Test(priority = 14)
+    public void voidTestTransactionRequestDefault() {
+        String expectedResult = "Chọn phiếu yêu cầu";
+        String actualResult = goodReceivedNotePage.getSelectedTransactionRequest();
+        Assert.assertEquals(actualResult, expectedResult);
+    }
+
+
     @Test(priority = 13)
     public void testTransactionRequestDisplay() {
         String transactionRequest = "PYCN240004";
@@ -173,23 +213,76 @@ public class GoodReceivedNoteTest extends BaseSetup {
     }
 
     @Test(priority = 14)
-    public void testTransactionRequestList() {
-        int expectedLen = 2;
-        int actualLen = goodReceivedNotePage.getLenTransactionRequest();
-        Assert.assertEquals(actualLen, expectedLen);
-
+    public void testChangeTransactionRequest() {
+        String firstOption = "PYCN240004";
+        String expectedResult = "PYCN240006";
+        goodReceivedNotePage.selectTransactionRequest(firstOption);
+        goodReceivedNotePage.selectTransactionRequest(expectedResult);
+        String actualResult = goodReceivedNotePage.getSelectedTransactionRequest();
+        Assert.assertEquals(actualResult, expectedResult);
     }
 
     @Test(priority = 15)
+    public void testBookList() {
+        List<String> expectedBooks = Arrays.asList("Ký ức Đông Dương", "Dạy trẻ quản lý và tiêu tiền", "Thơ Tết dành cho thiếu nhi", "Kính vạn hoa", "Bong bóng trên trời", "Ngày xưa có một chuyện tình");
+        List<String> actualBooks = goodReceivedNotePage.getListBook();
+        Assert.assertEquals(actualBooks, expectedBooks);
+    }
+
+    @Test(priority = 16)
+    public void testBookDefault() {
+        String expectedResult = "Chọn sách";
+        String actualResult = goodReceivedNotePage.getSelectedBook();
+        Assert.assertEquals(actualResult, expectedResult);
+    }
+
+    @Test(priority = 17)
+    public void testSelectedBook() {
+        String expectedResult = "Ký ức Đông Dương";
+        goodReceivedNotePage.selectBook(expectedResult);
+        String actualResult = goodReceivedNotePage.getSelectedBook();
+        Assert.assertEquals(actualResult, expectedResult);
+    }
+
+    @Test(priority = 18)
+    public void testBookNameEmpty() {
+        String expectedMessage = "Không được bỏ trống tên sách";
+        goodReceivedNotePage.clickSaveButton();
+        String actualMsg = goodReceivedNotePage.getBookNameErrorMessage();
+        Assert.assertEquals(expectedMessage, actualMsg);
+    }
+
+    @Test(priority = 19)
+    public void testChangeBook() {
+        String firstOptions = "Dạy trẻ quản lý và tiêu tiền";
+        String expectedResult = "Ký ức Đông Dương";
+        goodReceivedNotePage.selectBook(firstOptions);
+        goodReceivedNotePage.selectBook(expectedResult);
+        String actualResult = goodReceivedNotePage.getSelectedBook();
+        Assert.assertEquals(actualResult, expectedResult);
+    }
+
+    @Test(priority = 20)
+    public void testDoubleBookName() {
+        String option = "Dạy trẻ quản lý và tiêu tiền";
+        goodReceivedNotePage.selectBook(option);
+        goodReceivedNotePage.addRow();
+        boolean isDisplay = goodReceivedNotePage.isBookNameInRow2ComboBox();
+        Assert.assertFalse(isDisplay, "Tên sách đã bị trùng");
+    }
+
+    @Test(priority = 21)
     public void testActualQuantityWithNegativeNumber() {
-        String negativeNumber = "-5";
+        excelHelpers.setExcelFile("src/test/resources/QuantityData.xlsx", "Sheet1");
+//        String negativeNumber = "-5";
+        String negativeNumber = excelHelpers.getCellData("quantity",2);
         goodReceivedNotePage.enterActualQuantity(negativeNumber);
         String actualResult = goodReceivedNotePage.getActualQuantityValue();
         String filteredString = negativeNumber.replaceAll("[^0-9]", "");
         Assert.assertEquals(actualResult, filteredString);
     }
 
-    @Test(priority = 16)
+    @Test(priority = 22)
     public void testCheckActualQuantityIsOnlyNumericInput() {
         String input = "abc123";
         goodReceivedNotePage.enterActualQuantity(input);
@@ -200,8 +293,8 @@ public class GoodReceivedNoteTest extends BaseSetup {
         Assert.assertEquals(actualResult, filteredString);
     }
 
-    @Test(priority = 17)
-    public void testCheckValidActualQuantity() {
+    @Test(priority = 23)
+    public void testCheckValidEmptyQuantity() {
         String transactionRequest = "PYCN240004";
         String expectedMessage = "Không được bỏ trống số lượng";
         goodReceivedNotePage.selectTransactionRequest(transactionRequest);
@@ -213,7 +306,7 @@ public class GoodReceivedNoteTest extends BaseSetup {
 
     }
 
-    @Test(priority = 18)
+    @Test(priority = 24)
     public void testCheckActualQuantityWithFloat() throws InterruptedException {
         String floatNumber = "123,45";
         goodReceivedNotePage.enterActualQuantity(floatNumber);
@@ -225,7 +318,7 @@ public class GoodReceivedNoteTest extends BaseSetup {
         Assert.assertEquals(actualResult, filteredString);
     }
 
-    @Test(priority = 19)
+    @Test(priority = 25)
     public void testCheckActualQuantityLimit() {
         String limit = "9999999";
         String expectedMessage = "Số lượng vượt quá giới hạn (999,999)";
@@ -235,131 +328,7 @@ public class GoodReceivedNoteTest extends BaseSetup {
         Assert.assertEquals(expectedMessage, actualMsg);
     }
 
-    @Test(priority = 20)
-    public void testDeleteRow() {
-        String transactionRequest = "PYCN240004";
-        goodReceivedNotePage.selectTransactionRequest(transactionRequest);
-        boolean isRowDeleted = goodReceivedNotePage.deleteRowAndConfirm();
-        Assert.assertTrue(isRowDeleted,"Hàng chưa được xóa thành công");
-    }
-
-    @Test(priority = 21)
-    public void testCancelDeleteRow() {
-        String transactionRequest = "PYCN240004";
-        goodReceivedNotePage.selectTransactionRequest(transactionRequest);
-        boolean isModalClosed = goodReceivedNotePage.cancelDeleteRow();
-        Assert.assertTrue(isModalClosed, "Hủy xóa hàng thất bại");
-    }
-
-    @Test(priority = 22)
-    public void testAddRow() {
-        boolean isRowAdded = goodReceivedNotePage.addRow();
-        Assert.assertTrue(isRowAdded, "Hàng chưa được thêm thành công");
-    }
-
-    @Test(priority = 23)
-    public void voidTestSupplierDefault() {
-        String expectedResult = "Chọn nhà cung cấp";
-        String actualResult = goodReceivedNotePage.getSelectedSupplier();
-        Assert.assertEquals(actualResult, expectedResult);
-    }
-
-    @Test(priority = 24)
-    public void voidTestTransactionRequestDefault() {
-        String expectedResult = "Chọn phiếu yêu cầu";
-        String actualResult = goodReceivedNotePage.getSelectedTransactionRequest();
-        Assert.assertEquals(actualResult, expectedResult);
-    }
-
-    @Test(priority = 25)
-    public void voidTestChangeSupplier() {
-        String firstOption = "Công Ty Cổ Phần Phát Hành Sách Tp.HCM";
-        String expectedResult = "Công Ty Cổ Phần Sách & Thiết Bị Giao Dục Trí Tuệ";
-        goodReceivedNotePage.selectSupplier(firstOption);
-        goodReceivedNotePage.selectSupplier(expectedResult);
-        String actualResult = goodReceivedNotePage.getSelectedSupplier();
-        Assert.assertEquals(actualResult, expectedResult);
-    }
-
     @Test(priority = 26)
-    public void testChangeTransactionRequest() {
-        String firstOption = "PYCN240004";
-        String expectedResult = "PYCN240006";
-        goodReceivedNotePage.selectTransactionRequest(firstOption);
-        goodReceivedNotePage.selectTransactionRequest(expectedResult);
-        String actualResult = goodReceivedNotePage.getSelectedTransactionRequest();
-        Assert.assertEquals(actualResult, expectedResult);
-    }
-
-    @Test(priority = 27)
-    public void testBookList() {
-        List<String> expectedBooks = Arrays.asList("Ký ức Đông Dương", "Dạy trẻ quản lý và tiêu tiền", "Thơ Tết dành cho thiếu nhi", "Kính vạn hoa", "Bong bóng trên trời", "Ngày xưa có một chuyện tình");
-        List<String> actualBooks = goodReceivedNotePage.getListBook();
-        Assert.assertEquals(actualBooks, expectedBooks);
-    }
-
-    @Test(priority = 28)
-    public void testBookDefault() {
-        String expectedResult = "Chọn sách";
-        String actualResult = goodReceivedNotePage.getSelectedBook();
-        Assert.assertEquals(actualResult, expectedResult);
-    }
-
-    @Test(priority = 29)
-    public void testSelectedBook() {
-        String expectedResult = "Ký ức Đông Dương";
-        goodReceivedNotePage.selectBook(expectedResult);
-        String actualResult = goodReceivedNotePage.getSelectedBook();
-        Assert.assertEquals(actualResult, expectedResult);
-    }
-
-    @Test(priority = 30)
-    public void testBookNameEmpty() {
-        String expectedMessage = "Không được bỏ trống tên sách";
-        goodReceivedNotePage.clickSaveButton();
-        String actualMsg = goodReceivedNotePage.getBookNameErrorMessage();
-        Assert.assertEquals(expectedMessage, actualMsg);
-    }
-
-    @Test(priority = 31)
-    public void testChangeBook() {
-        String firstOptions = "Dạy trẻ quản lý và tiêu tiền";
-        String expectedResult = "Ký ức Đông Dương";
-        goodReceivedNotePage.selectBook(firstOptions);
-        goodReceivedNotePage.selectBook(expectedResult);
-        String actualResult = goodReceivedNotePage.getSelectedBook();
-        Assert.assertEquals(actualResult, expectedResult);
-    }
-
-    @Test(priority = 31)
-    public void testDoubleBookName() {
-        String option = "Dạy trẻ quản lý và tiêu tiền";
-        goodReceivedNotePage.selectBook(option);
-        goodReceivedNotePage.addRow();
-        boolean isDisplay = goodReceivedNotePage.isBookNameInRow2ComboBox();
-        Assert.assertFalse(isDisplay, "Tên sách đã bị trùng");
-    }
-
-    @Test(priority = 32)
-    public void testPriceEmpty() {
-        String expectedMessage = "Không được bỏ trống đơn giá";
-        goodReceivedNotePage.clickSaveButton();
-        String actualMsg = goodReceivedNotePage.getPriceErrorMessage();
-        Assert.assertEquals(expectedMessage, actualMsg);
-    }
-
-    @Test(priority = 33)
-    public void testCheckPriceIsOnlyNumericInput() {
-        String input = "abc123";
-        goodReceivedNotePage.enterPrice(input);
-        String actualResult = goodReceivedNotePage.getPriceValue();
-        String filteredString = input.replaceAll("[^0-9]", "");
-        System.out.println("Actual :" + actualResult);
-        System.out.println("Expected :" + filteredString);
-        Assert.assertEquals(actualResult, filteredString);
-    }
-
-    @Test(priority = 34)
     public void testPriceWithNegativeNumber() {
         String negativeNumber = "-500000";
         goodReceivedNotePage.enterPrice(negativeNumber);
@@ -370,7 +339,26 @@ public class GoodReceivedNoteTest extends BaseSetup {
         Assert.assertEquals(actualResult, filteredString);
     }
 
-    @Test(priority = 35)
+    @Test(priority = 27)
+    public void testCheckPriceIsOnlyNumericInput() {
+        String input = "abc123";
+        goodReceivedNotePage.enterPrice(input);
+        String actualResult = goodReceivedNotePage.getPriceValue();
+        String filteredString = input.replaceAll("[^0-9]", "");
+        System.out.println("Actual :" + actualResult);
+        System.out.println("Expected :" + filteredString);
+        Assert.assertEquals(actualResult, filteredString);
+    }
+
+    @Test(priority = 28)
+    public void testPriceEmpty() {
+        String expectedMessage = "Không được bỏ trống đơn giá";
+        goodReceivedNotePage.clickSaveButton();
+        String actualMsg = goodReceivedNotePage.getPriceErrorMessage();
+        Assert.assertEquals(expectedMessage, actualMsg);
+    }
+
+    @Test(priority = 29)
     public void testCheckPriceLimit() {
         String limit = "9999999";
         String expectedMessage = "Đơn giá vượt quá giới hạn (999,999)";
@@ -380,12 +368,31 @@ public class GoodReceivedNoteTest extends BaseSetup {
         Assert.assertEquals(expectedMessage, actualMsg);
     }
 
-    @AfterMethod
-    public void takeScreenshot(ITestResult result) throws InterruptedException {
-        Thread.sleep(1000);
-        String className = result.getTestClass().getName();
-        className = className.substring(className.lastIndexOf('.') + 1);
-        if (ITestResult.FAILURE == result.getStatus())
-            CaptureHelpers.captureScreenshot(driver, className +"_" + result.getName());
+    @Test(priority = 31)
+    public void testDeleteRow() {
+        String transactionRequest = "PYCN240004";
+        goodReceivedNotePage.selectTransactionRequest(transactionRequest);
+        boolean isRowDeleted = goodReceivedNotePage.deleteRowAndConfirm();
+        Assert.assertTrue(isRowDeleted,"Hàng chưa được xóa thành công");
     }
+
+    @Test(priority = 32)
+    public void testCancelDeleteRow() {
+        String transactionRequest = "PYCN240004";
+        goodReceivedNotePage.selectTransactionRequest(transactionRequest);
+        boolean isModalClosed = goodReceivedNotePage.cancelDeleteRow();
+        Assert.assertTrue(isModalClosed, "Hủy xóa hàng thất bại");
+    }
+
+    @Test(priority = 33)
+    public void testAddRow() {
+        boolean isRowAdded = goodReceivedNotePage.addRow();
+        Assert.assertTrue(isRowAdded, "Hàng chưa được thêm thành công");
+    }
+
+
+
+
+
+
 }

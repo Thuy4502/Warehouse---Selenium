@@ -1,9 +1,6 @@
 package selenium.com.project.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -14,6 +11,7 @@ import org.testng.Assert;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class LogPage {
     WebDriver driver;
@@ -38,8 +36,11 @@ public class LogPage {
     @FindBy(xpath = "//body/div[@id='root']/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[3]/div[2]/div[1]/div[1]/div[1]")
     private WebElement calendarEnd;
 
-    @FindBy(xpath = "//button[@id='btn-export-excel']")
+    @FindBy(xpath = "//button[contains(text(),'Xuất file excel')]")
     private WebElement btnExportExcel;
+
+    @FindBy(xpath = "//div[contains(text(),'Nhật ký kho chung')]")
+    private WebElement txtTitle;
 
     public LogPage(WebDriver driver) {
         this.driver = driver;
@@ -107,12 +108,37 @@ public class LogPage {
         return isDisplay;
     }
 
+    public boolean closeCalendar(WebElement element, WebElement calendar) {
+        element.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(calendar));
+        txtTitle.click();
+        try {
+            wait.until(ExpectedConditions.invisibilityOf(calendar));
+            return true;
+        } catch (TimeoutException e) {
+            System.out.println("Calendar không đóng sau thời gian chờ.");
+            return false;
+        } catch (NoSuchElementException e) {
+            System.out.println("Calendar không tồn tại trong DOM.");
+            return true;
+        }
+    }
+
     public boolean checkCalendarStart() {
         return openCalendar(startDate, calendarStart);
     }
 
     public boolean checkCalendarEnd() {
         return openCalendar(endDate, calendarEnd);
+    }
+
+    public boolean checkCloseCalendarStart() {
+        return closeCalendar(startDate, calendarStart);
+    }
+
+    public boolean checkCloseCalendarEnd() {
+        return closeCalendar(endDate, calendarEnd);
     }
 
     public void sendKeysStartDate(String date) {
@@ -124,9 +150,9 @@ public class LogPage {
     }
 
     public void clickExportExcelBtn() {
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(1000, 0);");
         btnExportExcel.click();
     }
-
     public void waitForPageLoaded() {
         ExpectedCondition<Boolean> expectation = new
                 ExpectedCondition<Boolean>() {

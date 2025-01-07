@@ -1,9 +1,6 @@
 package selenium.com.project.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -43,6 +40,10 @@ public class InventoryReportPage {
     @FindBy(xpath = "//button[@id='btn-export-excel']")
     private WebElement btnExportExcel;
 
+    @FindBy(xpath = "//div[contains(text(),'Báo cáo tồn kho')]")
+    private WebElement txtTitle;
+
+
     public InventoryReportPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -67,6 +68,24 @@ public class InventoryReportPage {
         wait.until(ExpectedConditions.visibilityOf(calendar));
         boolean isDisplay = calendar.isDisplayed();
         return isDisplay;
+    }
+
+    public boolean closeCalendar(WebElement element, WebElement calendar) {
+        element.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(calendar));
+        txtTitle.click();
+        try {
+            // Chờ phần tử ẩn đi
+            wait.until(ExpectedConditions.invisibilityOf(calendar));
+            return true; // Calendar đã đóng
+        } catch (TimeoutException e) {
+            System.out.println("Calendar không đóng sau thời gian chờ.");
+            return false; // Calendar vẫn hiển thị
+        } catch (NoSuchElementException e) {
+            System.out.println("Calendar không tồn tại trong DOM.");
+            return true; // Calendar đã bị loại khỏi DOM
+        }
     }
 
     public List<String[]> getTableData() {
@@ -103,6 +122,13 @@ public class InventoryReportPage {
         return tableData;
     }
 
+    public boolean checkCloseCalendarStart() {
+        return closeCalendar(startDate, calendarStart);
+    }
+
+    public boolean checkCloseCalendarEnd() {
+        return closeCalendar(endDate, calendarEnd);
+    }
 
     public boolean checkCalendarStart() {
         return openCalendar(startDate, calendarStart);
@@ -110,14 +136,6 @@ public class InventoryReportPage {
 
     public boolean checkCalendarEnd() {
         return openCalendar(endDate, calendarEnd);
-    }
-
-    public void sendKeysStartDate(String date) {
-        startDate.sendKeys(date);
-    }
-
-    public void sendKeysEndDate(String date) {
-        endDate.sendKeys(date);
     }
 
     public void clickExportExcelBtn() {

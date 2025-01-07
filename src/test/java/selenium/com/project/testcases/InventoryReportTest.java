@@ -3,12 +3,12 @@ package selenium.com.project.testcases;
 import helpers.CaptureHelpers;
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import selenium.com.browsers.base.BaseSetup;
+import selenium.com.project.pages.DashboardPage;
 import selenium.com.project.pages.InventoryReportPage;
 import selenium.com.project.pages.LoginPage;
+import selenium.com.utils.listeners.ReportListener;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -16,47 +16,56 @@ import java.util.List;
 
 import static helpers.ExcelHelpers.getDownloadedFileName;
 
+@Listeners(ReportListener.class)
 public class InventoryReportTest extends BaseSetup {
     private InventoryReportPage inventoryReportPage;
-    private LoginPage loginPage;
+    private DashboardPage dashboardPage;
 
-    @BeforeMethod
+    @BeforeClass
     public void setUp() throws InterruptedException {
+        if (driver == null) {
+            throw new IllegalStateException("WebDriver is not initialized.");
+        }
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        loginPage = new LoginPage(driver);
-        inventoryReportPage = new InventoryReportPage(driver);
-        loginPage.loginWarehouse("thukho", "123456");
-        inventoryReportPage.goToReportPage();
+
+        dashboardPage = new DashboardPage(driver);
+        inventoryReportPage = dashboardPage.goToInventoryReportPage();
     }
 
-    @AfterMethod
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(3000);
-    }
-
-    @AfterMethod
-    public void takeScreenshot(ITestResult result) throws InterruptedException {
-        Thread.sleep(1000);
-        String className = result.getTestClass().getName();
-        className = className.substring(className.lastIndexOf('.') + 1);
-        if (ITestResult.FAILURE == result.getStatus())
-            CaptureHelpers.captureScreenshot(driver, className +"_" + result.getName());
+    @AfterClass
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
     @Test(priority = 1)
-    public void testStartCalendar() {
+    public void testOpenStartCalendar() {
         boolean result = inventoryReportPage.checkCalendarStart();
-        Assert.assertTrue(result, "Lịch chưa được hiển thị");
+        Assert.assertTrue(result, "Lịch cho ngày bắt đầu chưa được hiển thị");
     }
 
     @Test(priority = 2)
-    public void testEndCalendar() {
+    public void testOpenEndCalendar() {
         boolean result = inventoryReportPage.checkCalendarEnd();
-        Assert.assertTrue(result, "Lịch chưa được hiển thị");
+        Assert.assertTrue(result, "Lịch cho ngày kết thúc chưa được hiển thị\"");
     }
 
     @Test(priority = 3)
+    public void testCloseStartCalendar() {
+        boolean result = inventoryReportPage.checkCloseCalendarStart();
+        Assert.assertTrue(result, "Lịch cho ngày bắt đầu chưa được đóng\"");
+    }
+
+    @Test(priority = 4)
+    public void testCloseEndCalendar() {
+        boolean result = inventoryReportPage.checkCloseCalendarEnd();
+        Assert.assertTrue(result, "Lịch cho ngày kết thúc chưa được đóng");
+    }
+
+    @Test(priority = 5)
     public void testDownloadedExcelFile() throws InterruptedException {
         String expectedFileName = "InventoryReport";
         String expectedFilePath = "C:\\Users\\thith\\Downloads\\InventoryReport.xlsx";
@@ -74,7 +83,7 @@ public class InventoryReportTest extends BaseSetup {
         Assert.assertEquals(downloadedFilePath, expectedFilePath);
     }
 
-    @Test(priority = 4)
+    @Test(priority = 6)
     public void testEndQuantity() {
         List<String[]> tableData = inventoryReportPage.getTableData();
         List<String> errors = checkEndQuantity(tableData);
@@ -84,7 +93,7 @@ public class InventoryReportTest extends BaseSetup {
         }
     }
 
-    @Test(priority = 5)
+    @Test(priority = 7)
     public void testEndAmount() {
         List<String[]> tableData = inventoryReportPage.getTableData();
         List<String> errors = checkEndValue(tableData);

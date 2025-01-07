@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <parameter name="browser" value="edge" />
+    <test verbose="2" preserve-order="true" name="D:/JAVA_WEB/WarehouseAutomationTest">
+        <classes>
+            <!-- ExportLogTest -->
+            <class name="selenium.com.project.testcases.ExportLogTest">
+                <methods>
+                    <include name="checkBeginningAmount"/>
+                    <include name="checkImportingAmount"/>
+                    <include name="checkEndAmount"/>
+                    <include name="checkEndQuantity"/>
+                    <include name="checkInventoryBookConsistency"/>
+                    <include name="testStartCalendar"/>
+                    <include name="testEndCalendar"/>
+                    <include name="testFilterByDate"/>
+                    <include name="checkDownloadedExcelFile"/>
+                </methods>
+            </class>
+            </class>
+
+        </classes>
+    </test>
+</suite>

@@ -21,13 +21,13 @@ public class GoodReceivedNotePage {
     @FindBy(id = "modal-add-transaction")
     private WebElement modalAddTransaction;
 
-    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/ul[1]/li[4]/div[1]/div[1]")
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/ul[1]/li[6]/div[1]")
     private WebElement btnTransaction;
 
     @FindBy(xpath = "//a[contains(text(),'Phiếu nhập')]")
     private WebElement btnImport;
 
-    @FindBy(id = "add-transaction-btn")
+    @FindBy(xpath = "//button[@id='btn-add-transaction']")
     private WebElement btnAddTransaction;
 
     @FindBy(xpath = "//input[@id='field-delivery-person']")
@@ -147,8 +147,6 @@ public class GoodReceivedNotePage {
     }
 
     public void fillTransactionForm(String deliveryPerson, int supplier, String billCode, String address, int transactionRequest, String actualQuantity1, String actualQuantity2) throws InterruptedException {
-//        fieldTransactionCode.clear();
-//        fieldTransactionCode.sendKeys(transactionCode);
 
         fieldDeliveryPerson.clear();
         fieldDeliveryPerson.sendKeys(deliveryPerson);
@@ -210,17 +208,6 @@ public class GoodReceivedNotePage {
         return isModalClosed;
     }
 
-    public String getTransactionCode() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        wait.until(ExpectedConditions.visibilityOf(fieldTransactionCode));
-        return fieldTransactionCode.getAttribute("value");
-    }
-
-    public String getTransactionCodeHelperText() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", helperTransactionCode);
-        return helperTransactionCode.getText();
-    }
-
     public String getDeliveryPersonHelperText() {
         return helperDeliveryPerson.getText();
     }
@@ -232,6 +219,12 @@ public class GoodReceivedNotePage {
     public void selectSupplier(String supplier) {
         Select select = new Select(selectSupplier);
         select.selectByValue(supplier);
+    }
+
+    public String getSupplierDefault() {
+        Select select = new Select(selectSupplier);
+        WebElement selectedOption = select.getFirstSelectedOption();
+        return selectedOption.getText();
     }
 
     public void selectBook(String book) {
@@ -425,6 +418,14 @@ public class GoodReceivedNotePage {
             }
         }
         return false;
+    }
+
+    public void clickCloseModal() {
+        btnCancel.click();
+    }
+
+    public void openModal() {
+        btnAddTransaction.click();
     }
 
 

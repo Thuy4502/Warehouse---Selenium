@@ -1,15 +1,11 @@
 package selenium.com.project.testcases;
 
-import helpers.CaptureHelpers;
 import org.testng.Assert;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import selenium.com.browsers.base.BaseSetup;
+import selenium.com.project.pages.DashboardPage;
 import selenium.com.project.pages.LogPage;
-import selenium.com.project.pages.LoginPage;
+import selenium.com.utils.listeners.ReportListener;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -19,28 +15,57 @@ import java.util.List;
 
 import static helpers.ExcelHelpers.getDownloadedFileName;
 
+@Listeners(ReportListener.class)
 public class LogTest extends BaseSetup {
     private LogPage logPage;
-    private LoginPage loginPage;
+    private DashboardPage dashboardPage;
 
-    @BeforeMethod
+    @BeforeClass
     public void setUp() throws InterruptedException {
+        if (driver == null) {
+            throw new IllegalStateException("WebDriver is not initialized.");
+        }
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        loginPage = new LoginPage(driver);
-        logPage = new LogPage(driver);
-        loginPage.loginWarehouse("thukho", "123456");
-        logPage.goToReportPage();
+
+        dashboardPage = new DashboardPage(driver);
+        logPage = dashboardPage.goToLogPage();
     }
+
 
     @AfterClass
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(3000);
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
-
-
     @Test(priority = 1)
+    public void testStartCalendar() {
+        boolean result = logPage.checkCalendarStart();
+        Assert.assertTrue(result, "Lịch chưa được hiển thị");
+    }
+
+    @Test(priority = 2)
+    public void testEndCalendar() {
+        boolean result = logPage.checkCalendarEnd();
+        Assert.assertTrue(result, "Lịch chưa được hiển thị");
+    }
+
+    @Test(priority = 3)
+    public void testCloseStartCalendar() {
+        boolean result = logPage.checkCloseCalendarStart();
+        Assert.assertTrue(result, "Lịch cho ngày bắt đầu chưa được đóng\"");
+    }
+
+    @Test(priority = 4)
+    public void testCloseEndCalendar() {
+        boolean result = logPage.checkCloseCalendarEnd();
+        Assert.assertTrue(result, "Lịch cho ngày kết thúc chưa được đóng");
+    }
+
+    @Test(priority = 5)
     public void checkBeginningAmount() {
         List<String[]> tableData = logPage.getTableData();
         List<String> errors = validateAmounts(tableData);
@@ -50,7 +75,7 @@ public class LogTest extends BaseSetup {
         }
     }
 
-    @Test(priority = 2)
+    @Test(priority = 6)
     public void checkImportingAmount() {
         List<String[]> tableData = logPage.getTableData();
         List<String> errors = validateAmounts(tableData);
@@ -60,18 +85,7 @@ public class LogTest extends BaseSetup {
         }
     }
 
-
-    @Test(priority = 3)
-    public void checkEndAmount() {
-        List<String[]> tableData = logPage.getTableData();
-        List<String> errors = validateEndAmount(tableData);
-
-        if (!errors.isEmpty()) {
-            Assert.fail("Có lỗi trong dữ liệu:\n" + String.join("\n", errors));
-        }
-    }
-
-    @Test(priority = 4)
+    @Test(priority = 7)
     public void checkEndQuantity() {
         List<String[]> tableData = logPage.getTableData();
         List<String> errors = validateEndQuantity(tableData);
@@ -81,43 +95,11 @@ public class LogTest extends BaseSetup {
         }
     }
 
-    @Test(priority = 5)
-    public void checkInventoryBookConsistency() {
-        List<String[]> tableData = logPage.getTableData();
-        List<String> errors = verifyInventoryBookConsistency(tableData);
-
-        if (!errors.isEmpty()) {
-            Assert.fail("Có lỗi trong dữ liệu:\n" + String.join("\n", errors));
-        }
-    }
-
-    @Test(priority = 6)
-    public void testStartCalendar() {
-        boolean result = logPage.checkCalendarStart();
-        Assert.assertTrue(result, "Lịch chưa được hiển thị");
-    }
-
-    @Test(priority = 7)
-    public void testEndCalendar() {
-        boolean result = logPage.checkCalendarEnd();
-        Assert.assertTrue(result, "Lịch chưa được hiển thị");
-    }
-
     @Test(priority = 8)
-    public void testFilterByDate() {
-        String startDate = "2024-11-25";
-        String endDate = "2024-11-27";
-
-        if (startDate == null || startDate.isEmpty() || endDate == null || endDate.isEmpty()) {
-            Assert.fail("Start date or end date is null or empty");
-            return;
-        }
-
-        logPage.sendKeysStartDate(startDate);
-        logPage.sendKeysEndDate(endDate);
-
+    public void checkEndAmount() {
         List<String[]> tableData = logPage.getTableData();
-        List<String> errors = verifyFilterByDate(tableData, startDate, endDate);
+        List<String> errors = validateEndAmount(tableData);
+
         if (!errors.isEmpty()) {
             Assert.fail("Có lỗi trong dữ liệu:\n" + String.join("\n", errors));
         }
@@ -125,8 +107,8 @@ public class LogTest extends BaseSetup {
 
     @Test(priority = 9)
     public void checkDownloadedExcelFile() throws InterruptedException {
-        String expectedFileName = "ImportHistory";
-        String expectedFilePath = "C:\\Users\\thith\\Downloads\\ImportHistory.xlsx";
+        String expectedFileName = "Transaction_Report";
+        String expectedFilePath = "C:\\Users\\thith\\Downloads\\Transaction_Report.xlsx";
 
         logPage.clickExportExcelBtn();
         Thread.sleep(3000);
@@ -140,6 +122,38 @@ public class LogTest extends BaseSetup {
 
         Assert.assertEquals(downloadedFilePath, expectedFilePath);
     }
+
+    @Test(priority = 10)
+    public void checkInventoryBookConsistency() {
+//        Lấy dữ liệu từ bảng nhật ký kho chung để kiểm tra
+        List<String[]> tableData = logPage.getTableData();
+//        Gọi hàm để kiểm tra trong bảng có lỗi không, nếu có
+//        lỗi đó sẽ được lưu vào list error
+        List<String> errors = verifyInventoryBookConsistency(tableData);
+        //Nếu trong bảng có lỗi tính toán
+        if (!errors.isEmpty()) {
+//            Assert.fail() làm cho test case thất bại, và hiển thị
+//            thông báo lỗi đã truyền vào
+            Assert.fail("Có lỗi trong dữ liệu:\n" + String.join("\n", errors));
+        }
+    }
+
+    @Test(priority = 11)
+    public void testFilterByDate() {
+        String startDate = "2024-11-25";
+        String endDate = "2024-11-27";
+
+        logPage.sendKeysStartDate(startDate);
+        logPage.sendKeysEndDate(endDate);
+
+        List<String[]> tableData = logPage.getTableData();
+        List<String> errors = verifyFilterByDate(tableData, startDate, endDate);
+        if (!errors.isEmpty()) {
+            Assert.fail("Có lỗi trong dữ liệu:\n" + String.join("\n", errors));
+        }
+    }
+
+
 
     private double parseCurrencyToDouble(String currency) {
         String numericValue="";
@@ -159,7 +173,6 @@ public class LogTest extends BaseSetup {
 
     private List<String> validateEndQuantity(List<String[]> tableData) {
         List<String> errors = new ArrayList<>();
-
         for (int i = 0; i < tableData.size(); i++) {
             String[] row = tableData.get(i);
             String currentBookId = row[2].trim();
@@ -251,46 +264,48 @@ public class LogTest extends BaseSetup {
     private List<String> verifyInventoryBookConsistency(List<String[]> tableData) {
         List<String> errors = new ArrayList<>();
 
-        for (int i = 0; i < tableData.size() - 1; i++) {
+        for (int i = 0; i < tableData.size(); i++) {
             String[] currentRow = tableData.get(i);
             String currentStartQuantity = currentRow[4].trim();
             String currentBookId = currentRow[2].trim();
             String date = currentRow[0].trim();
             String transactionCode = currentRow[1].trim();
+            if (i==0) {
+                System.out.println(currentStartQuantity);
+            }
 
             if (currentStartQuantity.isEmpty()) {
-                errors.add("Dữ liệu không hợp lệ ở ngày " + (date) + ": Tồn đầu kỳ bị rỗng.");
+                errors.add("Dữ liệu không hợp lệ ở ngày " + date + ": Tồn đầu kỳ bị rỗng.");
                 continue;
             }
 
+            // Tìm dòng gần nhất có cùng mã sách
             String previousEndQuantity = null;
-
-            for (int j = i + 1; j < tableData.size(); j++) {
+            for (int j = i + 1; j < tableData.size(); j++) { // Duyệt ngược từ dòng trước
                 String[] previousRow = tableData.get(j);
                 String previousBookId = previousRow[2].trim();
 
-                if (currentBookId.equals(previousBookId)) {
+                if (currentBookId.equals(previousBookId)) { // Mã sách trùng nhau
                     previousEndQuantity = previousRow[13].trim();
                     System.out.println("  Dòng so sánh: " + (j + 1));
                     System.out.println("    Mã sách trùng: " + previousBookId);
                     System.out.println("    Tồn cuối kỳ: " + previousEndQuantity);
-                    break;
+                    break; // Chỉ lấy dòng gần nhất
                 }
             }
 
             if (previousEndQuantity != null && !previousEndQuantity.isEmpty()) {
-                System.out.println(" Meeeeee " +  previousEndQuantity);
                 try {
-
                     int startQuantity = Integer.parseInt(currentStartQuantity);
                     int endQuantity = Integer.parseInt(previousEndQuantity);
 
+                    System.out.println("GÍA TRỊ TỒN TRƯỚC ĐÓ " + endQuantity);
                     System.out.println("  So sánh giá trị:");
                     System.out.println("    Tồn đầu kỳ (đã chuyển đổi): " + startQuantity);
                     System.out.println("    Tồn cuối kỳ (đã chuyển đổi): " + endQuantity);
 
                     if (startQuantity != endQuantity) {
-                        errors.add("Sai sót ở sản phẩm mã " + currentBookId + ": " + ", Ngày :" + date +", số phiếu nhập : " + transactionCode
+                        errors.add("Sai sót ở sản phẩm mã " + currentBookId + ": " + ", Ngày: " + date + ", số phiếu nhập: " + transactionCode
                                 + " Tồn đầu kỳ = " + startQuantity
                                 + ", Tồn cuối kỳ trước đó = " + endQuantity);
                     }
@@ -302,6 +317,7 @@ public class LogTest extends BaseSetup {
 
         return errors;
     }
+
 
     private List<String> verifyFilterByDate(List<String[]> tableData, String startDate, String endDate) {
         List<String> errors = new ArrayList<>();
@@ -327,13 +343,5 @@ public class LogTest extends BaseSetup {
         return errors;
     }
 
-    @AfterMethod
-    public void takeScreenshot(ITestResult result) throws InterruptedException {
-        Thread.sleep(1000);
-        String className = result.getTestClass().getName();
-        className = className.substring(className.lastIndexOf('.') + 1);
-        if (ITestResult.FAILURE == result.getStatus())
-            CaptureHelpers.captureScreenshot(driver, className +"_" + result.getName());
-    }
 
 }

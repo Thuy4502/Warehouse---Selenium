@@ -43,14 +43,14 @@ public class LoginPage {
         driver.findElement(btnLogin).click();
     }
 
-    public void loginWarehouse(String username, String password) throws InterruptedException {
+    public DashboardPage loginWarehouse(String username, String password) throws InterruptedException {
         driver.get(ConfigData.URL);
         setUsername(username);
         setPassword(password);
         Thread.sleep(3000);
         clickBtnLogin();
         Thread.sleep(10000);
-
+        return new DashboardPage(driver);
     }
 
     public void checkLoginSuccessful(String username, String password) throws InterruptedException {

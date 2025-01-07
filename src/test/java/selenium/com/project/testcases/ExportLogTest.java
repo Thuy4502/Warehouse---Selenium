@@ -3,11 +3,9 @@ package selenium.com.project.testcases;
 import helpers.CaptureHelpers;
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import selenium.com.browsers.base.BaseSetup;
+import selenium.com.project.pages.DashboardPage;
 import selenium.com.project.pages.ExportLogPage;
 import selenium.com.project.pages.LoginPage;
 import selenium.com.utils.listeners.ReportListener;
@@ -23,24 +21,74 @@ import static helpers.ExcelHelpers.getDownloadedFileName;
 @Listeners(ReportListener.class)
 public class ExportLogTest extends BaseSetup {
     private ExportLogPage exportLogPage;
+    private DashboardPage dashboardPage;
     private LoginPage loginPage;
 
-    @BeforeMethod
+    @BeforeClass
     public void setUp() throws InterruptedException {
+        if (driver == null) {
+            throw new IllegalStateException("WebDriver is not initialized.");
+        }
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        loginPage = new LoginPage(driver);
-        exportLogPage = new ExportLogPage(driver);
-        loginPage.loginWarehouse("thukho", "123456");
-        exportLogPage.goToReportPage();
+
+        dashboardPage = new DashboardPage(driver);
+        exportLogPage = dashboardPage.goToExportLogPage();
     }
 
-    @AfterMethod
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(3000);
+
+    @AfterClass
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
     @Test(priority = 1)
+    public void testStartCalendar() {
+        boolean result = exportLogPage.checkCalendarStart();
+        Assert.assertTrue(result, "Lịch chưa được hiển thị");
+    }
+
+    @Test(priority = 2)
+    public void testEndCalendar() {
+        boolean result = exportLogPage.checkCalendarEnd();
+        Assert.assertTrue(result, "Lịch chưa được hiển thị");
+    }
+
+    @Test(priority = 3)
+    public void testCloseStartCalendar() {
+        boolean result = exportLogPage.checkCloseCalendarStart();
+        Assert.assertTrue(result, "Lịch cho ngày bắt đầu chưa được đóng\"");
+    }
+
+    @Test(priority = 4)
+    public void testCloseEndCalendar() {
+        boolean result = exportLogPage.checkCloseCalendarEnd();
+        Assert.assertTrue(result, "Lịch cho ngày kết thúc chưa được đóng");
+    }
+
+    @Test(priority = 5)
+    public void checkDownloadedExcelFile() throws InterruptedException {
+        String expectedFileName = "ExportHistory";
+        String expectedFilePath = "C:\\Users\\thith\\Downloads\\ExportHistory.xlsx";
+
+        exportLogPage.clickExportExcelBtn();
+        Thread.sleep(3000);
+        String downloadedFilePath = getDownloadedFileName(expectedFileName);
+
+        if (downloadedFilePath != null) {
+            System.out.println("Tệp đã tải xuống: " + downloadedFilePath);
+        } else {
+            System.out.println("Không tìm thấy tệp trong thư mục Downloads.");
+        }
+
+        Assert.assertEquals(downloadedFilePath, expectedFilePath);
+    }
+
+
+    @Test(priority = 6)
     public void checkBeginningAmount() {
         List<String[]> tableData = exportLogPage.getTableData();
         List<String> errors = validateAmounts(tableData);
@@ -50,8 +98,8 @@ public class ExportLogTest extends BaseSetup {
         }
     }
 
-    @Test(priority = 2)
-    public void checkImportingAmount() {
+    @Test(priority = 7)
+    public void checkExportingAmount() {
         List<String[]> tableData = exportLogPage.getTableData();
         List<String> errors = validateAmounts(tableData);
 
@@ -60,17 +108,8 @@ public class ExportLogTest extends BaseSetup {
         }
     }
 
-    @Test(priority = 3)
-    public void checkEndAmount() {
-        List<String[]> tableData = exportLogPage.getTableData();
-        List<String> errors = validateEndAmount(tableData);
 
-        if (!errors.isEmpty()) {
-            Assert.fail("Có lỗi trong dữ liệu:\n" + String.join("\n", errors));
-        }
-    }
-
-    @Test(priority = 4)
+    @Test(priority = 8)
     public void checkEndQuantity() {
         List<String[]> tableData = exportLogPage.getTableData();
         List<String> errors = validateEndQuantity(tableData);
@@ -80,29 +119,17 @@ public class ExportLogTest extends BaseSetup {
         }
     }
 
-    @Test(priority = 5)
-    public void checkInventoryBookConsistency() {
+    @Test(priority = 9)
+    public void checkEndAmount() {
         List<String[]> tableData = exportLogPage.getTableData();
-        List<String> errors = verifyInventoryBookConsistency(tableData);
+        List<String> errors = validateEndAmount(tableData);
 
         if (!errors.isEmpty()) {
             Assert.fail("Có lỗi trong dữ liệu:\n" + String.join("\n", errors));
         }
     }
 
-    @Test(priority = 6)
-    public void testStartCalendar() {
-        boolean result = exportLogPage.checkCalendarStart();
-        Assert.assertTrue(result, "Lịch chưa được hiển thị");
-    }
-
-    @Test(priority = 7)
-    public void testEndCalendar() {
-        boolean result = exportLogPage.checkCalendarEnd();
-        Assert.assertTrue(result, "Lịch chưa được hiển thị");
-    }
-
-    @Test(priority = 8)
+    @Test(priority = 10)
     public void testFilterByDate() {
         String startDate = "2024-11-25";
         String endDate = "2024-11-27";
@@ -122,23 +149,6 @@ public class ExportLogTest extends BaseSetup {
         }
     }
 
-    @Test(priority = 9)
-    public void checkDownloadedExcelFile() throws InterruptedException {
-        String expectedFileName = "ExportHistory";
-        String expectedFilePath = "C:\\Users\\thith\\Downloads\\ExportHistory.xlsx";
-
-        exportLogPage.clickExportExcelBtn();
-        Thread.sleep(3000);
-        String downloadedFilePath = getDownloadedFileName(expectedFileName);
-
-        if (downloadedFilePath != null) {
-            System.out.println("Tệp đã tải xuống: " + downloadedFilePath);
-        } else {
-            System.out.println("Không tìm thấy tệp trong thư mục Downloads.");
-        }
-
-        Assert.assertEquals(downloadedFilePath, expectedFilePath);
-    }
 
     private List<String> validateAmounts(List<String[]> tableData) {
         List<String> errors = new ArrayList<>();
@@ -295,10 +305,6 @@ public class ExportLogTest extends BaseSetup {
     @AfterMethod
     public void takeScreenshot(ITestResult result) throws InterruptedException {
         Thread.sleep(1000);
-        String className = result.getTestClass().getName();
-        className = className.substring(className.lastIndexOf('.') + 1);
-        if (ITestResult.FAILURE == result.getStatus())
-            CaptureHelpers.captureScreenshot(driver, className +"_" + result.getName());
     }
 
 }

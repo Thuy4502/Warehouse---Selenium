@@ -22,13 +22,13 @@ public class GoodDeliveryNotePage {
     @FindBy(xpath = "//div[@id='add-transaction-modal']")
     private WebElement modalAddTransaction;
 
-    @FindBy(xpath = "//body/div[@id='root']/div[1]/div[1]/div[1]/div[1]/ul[1]/li[5]/div[1]/div[1]")
+    @FindBy(xpath = "//body/div[@id='root']/div[1]/div[1]/div[1]/div[1]/ul[1]/li[7]/div[1]/div[1]")
     private WebElement btnTransaction;
 
     @FindBy(xpath = "//a[contains(text(),'Phiếu xuất')]")
     private WebElement btnExport;
 
-    @FindBy(id = "add-transaction-btn")
+    @FindBy(xpath = "//button[@id='btn-add-transaction']")
     private WebElement btnAddTransaction;
 
     @FindBy(id = "field-transaction-code")
@@ -138,6 +138,14 @@ public class GoodDeliveryNotePage {
         btnTransaction.click();
         btnExport.click();
         waitForPageLoaded();
+        btnAddTransaction.click();
+    }
+
+    public void clickCloseModal() {
+        btnCancel.click();
+    }
+
+    public void openModal() {
         btnAddTransaction.click();
     }
 
